@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<legs:LoanPro360_AELegs xmlns:fx="http://ns.adobe.com/mxml/2009"
+						xmlns:mx="library://ns.adobe.com/flex/mx"
+						layout="absolute"
+						minWidth="955"
+						minHeight="600"
+						xmlns:components="com.mconnects.main.view.components.*"
+						xmlns:main="com.mconnects.lender.ae.main.*"
+						xmlns:ui="com.mconnects.lender.ae.main.view.ui.*"
+						xmlns:legs="com.mconnects.lender.ae.main.view.legs.*">
+
+	<fx:Style source="MConnects.css"/>
+	<fx:Script>
+		<![CDATA[
+			import org.exit12.util.icon.SilkIcon;
+		]]>
+	</fx:Script>
+
+	<fx:Declarations>
+		<main:LenderAEContext contextView="{this}"/>
+		<mx:AnimateProperty target="{this}"
+							property="alpha"
+							duration="600"
+							id="fader"/>
+	</fx:Declarations>
+
+	<!-- Logo -->
+	<mx:Image top="10"
+			  left="20"
+			  source="image/logo/LoanProPoweredByLogo.png"/>
+
+	<!-- Top Right Menu -->
+	<mx:HBox right="20"
+			 top="10">
+		<components:GlowButton buttonLabel="Report A Bug"
+							   click="reportBug()"
+							   buttonIcon="{new SilkIcon('bug')}"/>
+		<components:GlowButton buttonLabel="Logout"
+							   click="logout()"
+							   buttonIcon="{new SilkIcon('door')}"/>
+	</mx:HBox>
+
+	<!-- Main Screen -->
+	<ui:LenderAEMain left="20"
+					 right="20"
+					 top="60"
+					 bottom="10"/>
+
+</legs:LoanPro360_AELegs>

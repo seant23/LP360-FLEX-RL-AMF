@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:s="library://ns.adobe.com/flex/spark"
+				xmlns:mx="library://ns.adobe.com/flex/mx"
+				minWidth="955"
+				minHeight="600">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<fx:Style source="MConnects.css"/>
+	<fx:Script>
+		<![CDATA[
+			import org.exit12.module.ModuleInstance;
+			import org.exit12.module.ModuleManager;
+			import org.exit12.module.TitleWindowModule;
+			import org.exit12.util.Slick;
+
+			public function addModule():void {
+
+				var instance:ModuleInstance = ModuleManager.loadModule( "com/mconnects/employee/login/LoginPromptModule.swf" );
+
+				instance.addEventListener( ModuleManager.READY, function():void {
+						var viewer:TitleWindowModule = instance.module as TitleWindowModule;
+						Slick.add( viewer );
+					} )
+
+				//return mi;
+
+				//ModuleManager.loadModule( "com/mconnects/employee/login/LoginPromptModule.swf" );
+			}
+
+			public function loadCSS():void {
+				//StyleManager.loadStyleDeclarations( "MConnects.swf" );
+			}
+		]]>
+	</fx:Script>
+	<mx:Button click="addModule()"
+			   label="loadModule"/>
+	<mx:Button y="200"
+			   click="loadCSS()"
+			   label="loadCSS"/>
+</mx:Application>

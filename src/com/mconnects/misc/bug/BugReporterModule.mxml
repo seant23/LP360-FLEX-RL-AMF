@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<legs:BugReporterLegs xmlns:fx="http://ns.adobe.com/mxml/2009"
+					  layout="absolute"
+					  width="550"
+					  height="650"
+					  resizeEffect="{resize}"
+					  xmlns:legs="com.mconnects.misc.bug.view.legs.*"
+					  xmlns:mx="library://ns.adobe.com/flex/mx"
+					  height.complete="180">
+	<legs:states>
+		<mx:State name="State1"/>
+		<mx:State name="complete"/>
+	</legs:states>
+	<fx:Declarations>
+		<mx:Resize duration="300"
+				   id="resize"
+				   effectStart="slickCenter()"/>
+		<mx:Move duration="300"
+				 id="moveEffect"/>
+	</fx:Declarations>
+	<mx:HBox y="5"
+			 horizontalAlign="center"
+			 verticalAlign="middle"
+			 horizontalGap="20"
+			 horizontalCenter="0"
+			 width.complete="256">
+		<mx:Image source="image/areo/48/bug.png"
+				  includeIn="State1"/>
+		<mx:Label text="New Bug Report"
+				  fontWeight="bold"
+				  fontSize="20"
+				  text.complete="Report Posted!"
+				  width.complete="100%"
+				  textAlign.complete="center"/>
+	</mx:HBox>
+	<mx:Text y="56"
+			 text="Thanks for taking the time to report a bug. The sooner we know of a bug/issue the sooner we can fix it. Please try to fill out the form below with as much detail as possible.&#xa;&#xa;Thanks!"
+			 width="507"
+			 horizontalCenter="0"
+			 text.complete="Thanks for taking the time to report a bug. The sooner we know of a bug/issue the sooner we can fix it. We'll check into this asap!&#xd;&#xd;Thanks!"/>
+	<mx:ComboBox id="location"
+				 editable="true"
+				 y="206"
+				 width="507"
+				 horizontalCenter="0"
+				 includeIn="State1">
+		<mx:dataProvider>
+			<fx:Array>
+				<fx:String>Home Page</fx:String>
+				<fx:String>Home Page/Contacts</fx:String>
+				<fx:String>Pipeline/Prospects</fx:String>
+				<fx:String>Pipeline/Borrowers</fx:String>
+				<fx:String>Pipeline/New Application</fx:String>
+				<fx:String>Pipeline/Upload File</fx:String>
+				<fx:String>Knowledge Center/Founder's Message</fx:String>
+				<fx:String>Knowledge Center/Loan Solutions</fx:String>
+				<fx:String>Knowledge Center/Lender Correspondence</fx:String>
+				<fx:String>Knowledge Center/Training Resources</fx:String>
+				<fx:String>Knowledge Center/Company Policies</fx:String>
+				<fx:String>Knowledge Center/Employee Benefits</fx:String>
+				<fx:String>Knowledge Center/User/Loan Programs</fx:String>
+				<fx:String>Knowledge Center/User/Software</fx:String>
+				<fx:String>Knowledge Center/User/Marketing</fx:String>
+				<fx:String>Marketing Center</fx:String>
+				<fx:String>Agent Settings/Personal</fx:String>
+				<fx:String>Agent Settings/Logins</fx:String>
+				<fx:String>Agent Settings/Human Resources</fx:String>
+				<fx:String>Agent Settings/Dashboard</fx:String>
+				<fx:String>Admin/Manage Policies</fx:String>
+				<fx:String>Admin/Company Setup</fx:String>
+				<fx:String>Admin/User Management</fx:String>
+				<fx:String>Admin/Status Settings</fx:String>
+				<fx:String>Admin/Accounting</fx:String>
+				<fx:String>Admin/View Campaigns</fx:String>
+				<fx:String>Admin/Create Campaign</fx:String>
+				<fx:String>Admin/Manage Lenders</fx:String>
+				<fx:String>Admin/Correspondence</fx:String>
+				<fx:String>Admin/Rules</fx:String>
+				<fx:String>Admin/Reporting</fx:String>
+				<fx:String>Loggin In</fx:String>
+				<fx:String>Logging Out</fx:String>
+				<fx:String>1003 - Page 1</fx:String>
+				<fx:String>1003 - Page 2</fx:String>
+				<fx:String>1003 - Page 3</fx:String>
+				<fx:String>1003 - Page 4</fx:String>
+				<fx:String>1003 - Page 5</fx:String>
+				<fx:String>1008 - Page 1</fx:String>
+				<fx:String>GFE - Page 1</fx:String>
+				<fx:String>GFE - Page 2</fx:String>
+				<fx:String>TIL - Page 1</fx:String>
+				<fx:String>TIL - Page 2</fx:String>
+				<fx:String>Disclosures</fx:String>
+			</fx:Array>
+		</mx:dataProvider>
+	</mx:ComboBox>
+	<mx:TextInput id="titleInput"
+				  x="10"
+				  y="150"
+				  width="507"
+				  borderStyle="solid"
+				  cornerRadius="3"
+				  includeIn="State1">
+	</mx:TextInput>
+	<mx:Text x="12"
+			 y="180"
+			 text="Which feature did you find this new bug/issue in?"
+			 width="468"
+			 fontWeight="bold"
+			 includeIn="State1"/>
+	<mx:Text x="12"
+			 y="124"
+			 text="Short Description of your problem"
+			 width="468"
+			 fontWeight="bold"
+			 includeIn="State1"/>
+	<mx:TextArea id="comments"
+				 y="374"
+				 width="507"
+				 paddingLeft="2"
+				 paddingRight="2"
+				 paddingTop="2"
+				 paddingBottom="2"
+				 height="188"
+				 cornerRadius="5"
+				 horizontalCenter="0"
+				 includeIn="State1"/>
+	<mx:Text x="12"
+			 y="236"
+			 text="What type of bug/issue is this?"
+			 width="468"
+			 fontWeight="bold"
+			 includeIn="State1"/>
+	<mx:ComboBox id="type"
+				 editable="false"
+				 y="262"
+				 width="507"
+				 horizontalCenter="0"
+				 includeIn="State1">
+		<mx:dataProvider>
+			<fx:Array>
+				<fx:String>Bug</fx:String>
+				<fx:String>User Interface Issue/Glitch</fx:String>
+				<fx:String>Enhancement Request</fx:String>
+				<fx:String>Suggestion</fx:String>
+			</fx:Array>
+		</mx:dataProvider>
+	</mx:ComboBox>
+	<mx:Text y="292"
+			 text="Please choose on scale to seven how severe this issue is"
+			 width="468"
+			 fontWeight="bold"
+			 x="12"
+			 includeIn="State1"/>
+	<mx:ComboBox id="severity"
+				 editable="false"
+				 y="318"
+				 width="507"
+				 horizontalCenter="0"
+				 includeIn="State1">
+		<mx:dataProvider>
+			<fx:Array>
+				<fx:String>0 - Not severe at all</fx:String>
+				<fx:String>1 - Very minor annoyance</fx:String>
+				<fx:String>2 - Minor annoyance</fx:String>
+				<fx:String>3 - Annoying enough to be distracting</fx:String>
+				<fx:String>4 - Minorly affecting the speed of my work</fx:String>
+				<fx:String>5 - Majorly affecting the speed of my work</fx:String>
+				<fx:String>6 - Makes it impossible to do a specific task</fx:String>
+				<fx:String>7 - Makes it impossible to use the system</fx:String>
+			</fx:Array>
+		</mx:dataProvider>
+	</mx:ComboBox>
+	<mx:Text x="12"
+			 y="348"
+			 text="Long Description: Please describe the bug/issue in as much detail as possible"
+			 width="468"
+			 fontWeight="bold"
+			 includeIn="State1"/>
+	<mx:ControlBar horizontalAlign="center">
+		<mx:Button label="Report Bug"
+				   click="save()"
+				   width="125">
+			<mx:icon>@Embed(source='../../../../image/silk/bug_add.png')</mx:icon>
+		</mx:Button>
+		<mx:Button label="Cancel"
+				   click="slickClose()"
+				   width="125">
+			<mx:icon>@Embed(source='../../../../image/silk/decline.png')</mx:icon>
+		</mx:Button>
+	</mx:ControlBar>
+</legs:BugReporterLegs>

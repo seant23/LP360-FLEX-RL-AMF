@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:fx="http://ns.adobe.com/mxml/2009"
+		   xmlns:mx="library://ns.adobe.com/flex/mx"
+		   width="400"
+		   height="300"
+		   xmlns:components="com.mconnects.main.view.components.*">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+
+	<fx:Script>
+		<![CDATA[
+			import com.mconnects.lender.model.vo.LenderVO;
+
+			[Bindable]
+			public var lender:LenderVO;
+		]]>
+	</fx:Script>
+
+	<!-- Lender Logo -->
+	<components:LenderLogoImage left="10"
+								top="40"
+								width="80"
+								height="80"
+								lenderID="{lender.lenderid}"/>
+
+</mx:Canvas>

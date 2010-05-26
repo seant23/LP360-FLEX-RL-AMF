@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<legs:AELoginPromptLegs xmlns:fx="http://ns.adobe.com/mxml/2009"
+						xmlns:s="library://ns.adobe.com/flex/spark"
+						xmlns:mx="library://ns.adobe.com/flex/mx"
+						layout="absolute"
+						width="440"
+						height="220"
+						xmlns:login="com.mconnects.lender.ae.login.*"
+						roundedBottomCorners="true"
+						headerHeight="5"
+						xmlns:components="org.exit12.view.components.*"
+						height.State1="180"
+						width.State1="430"
+						height.loginError="200"
+						width.loginError="430"
+						height.register="380"
+						width.register="430"
+						resizeEffect="{resize}"
+						xmlns:legs="com.mconnects.lender.ae.login.view.legs.*"
+						height.registerError="400"
+						width.registerError="430">
+	<legs:states>
+		<s:State name="State1"/>
+		<s:State name="forgotPassword"/>
+		<mx:State name="loginError"/>
+		<mx:State name="register"/>
+		<mx:State name="registerError"/>
+	</legs:states>
+	<fx:Style source="MConnects.css"/>
+	<fx:Declarations>
+		<mx:Resize duration="300"
+				   id="resize"
+				   effectStart="startResze()"/>
+		<mx:Move duration="300"
+				 id="moveEffect"/>
+
+	</fx:Declarations>
+	<components:Title_Text_Input width="227"
+								 y="59"
+								 id="usernameInput"
+								 borderStyle="solid"
+								 cornerRadius="3"
+								 right="25"
+								 title="Username..."
+								 includeIn="State1,loginError"/>
+	<components:Title_Text_Input width="227"
+								 displayAsPassword="true"
+								 id="passwordInput"
+								 borderStyle="solid"
+								 cornerRadius="3"
+								 password="true"
+								 title="Password..."
+								 includeIn="State1,loginError"
+								 y="89"
+								 right="25"/>
+	<mx:Image y="19"
+			  source="image/logo/LoanProPoweredByLogo.png"
+			  x.State1="174"
+			  y.State1="18"
+			  x.loginError="174"
+			  y.loginError="18"
+			  y.register="18"
+			  x.forgotPassword="183"
+			  horizontalCenter.register="0"
+			  horizontalCenter.registerError="0"
+			  y.registerError="18"/>
+	<mx:Image source="image/areo/128/Security.png"
+			  left="15"
+			  source.forgotPassword="image/areo/128/Question.png"
+			  left.State1="15"
+			  verticalCenter.forgotPassword="0"
+			  verticalCenter.State1="0"
+			  left.loginError="15"
+			  source.loginError="image/areo/128/Warning.png"
+			  y.loginError="18"
+			  includeIn="State1,forgotPassword,loginError"/>
+
+
+
+	<!-- Forgot Password -->
+
+	<mx:Button includeIn="forgotPassword"
+			   x="223"
+			   y="138"
+			   label="Email My Login Information"/>
+
+	<mx:Button includeIn="forgotPassword"
+			   x="162"
+			   y="138"
+			   click="currentState = null"
+			   label="Back"/>
+
+	<components:Title_Text_Input includeIn="forgotPassword"
+								 x="162"
+								 y="68"
+								 cornerRadius="3"
+								 borderStyle="solid"
+								 width="243"
+								 title="Springwater Email..."/>
+	<components:Title_Text_Input includeIn="forgotPassword"
+								 x="162"
+								 y="102"
+								 width="243"
+								 cornerRadius="3"
+								 borderStyle="solid"
+								 title="Last Four of SSN..."/>
+
+
+	<!-- Login Error Form -->
+
+
+	<!-- Registration Form -->
+
+	<mx:HRule includeIn="register,registerError"
+			  x="10"
+			  y="51"
+			  width="390"/>
+	<mx:Text includeIn="register,registerError"
+			 x="10"
+			 y="61"
+			 text="Welcome To LoanPro360's AE Admin Interface!&#xd;&#xd;This admin was created to allow you to interact with Springwater's loan officers and processors. &#xd;&#xd;Here you'll be able to:&#xd;&#xd;  * Update contact information.&#xd;  * Upload loan documents&#xd;  * View LO/LP reviews&#xd;  * Post newsletters to our employees&#xd;&#xd;To get started we need you to enter the email address that we should already have in our system for you. We will then send you a email with your login information and you can get started."
+			 width="390"
+			 height="220"/>
+	<mx:HBox includeIn="register,registerError"
+			 y="292"
+			 left="10"
+			 right="10">
+		<mx:Label text="Your Email Address"/>
+		<components:Title_Text_Input id="registerInput"
+									 cornerRadius="3"
+									 borderStyle="solid"
+									 width="100%"
+									 title="John.Doe@LenderWebsite.com"/>
+	</mx:HBox>
+
+	<mx:Button x="14"
+			   bottom="13"
+			   click="currentState = null"
+			   label="Back"
+			   includeIn="register, registerError"/>
+
+	<mx:Button includeIn="register,registerError"
+			   label="Email Me My Password"
+			   click="register()"
+			   icon="@Embed(source='../../../../../image/silk/email_go.png')"
+			   labelPlacement="right"
+			   width="324"
+			   bottom="13"
+			   x="76"/>
+	<mx:HBox x="10"
+			 y="320"
+			 width="390"
+			 borderStyle="solid"
+			 cornerRadius="3"
+			 backgroundColor="#FBD1D1"
+			 includeIn="registerError">
+		<mx:Label text="{loginError}"
+				  textAlign="center"
+				  fontSize="12"
+				  color="#7E0000"
+				  fontWeight="bold"
+				  width="100%"/>
+	</mx:HBox>
+
+	<!-- Registration Error -->
+	<mx:HBox includeIn="State1, loginError"
+			 x="158"
+			 y="119"
+			 width="227">
+		<mx:LinkButton label="Forgot Password?"
+					   click="currentState = 'forgotPassword'"
+					   includeIn="State1,loginError"
+					   fontSize="9"
+					   fontWeight="normal"
+					   paddingLeft="1"
+					   paddingRight="1"/>
+		<mx:LinkButton label="Register?"
+					   includeIn="State1,loginError"
+					   click="currentState = 'register'"
+					   fontSize="9"
+					   fontWeight="normal"
+					   paddingLeft="1"
+					   paddingRight="1"
+					   width="100%"/>
+		<mx:Button label="Login"
+				   click="login()"
+				   includeIn="State1,loginError"/>
+	</mx:HBox>
+	<mx:HBox includeIn="loginError"
+			 x="10"
+			 y="153"
+			 width="390"
+			 borderStyle="solid"
+			 cornerRadius="3"
+			 backgroundColor="#FBD1D1">
+		<mx:Label text="{loginError}"
+				  textAlign="center"
+				  fontSize="12"
+				  color="#7E0000"
+				  fontWeight="bold"
+				  width="100%"/>
+	</mx:HBox>
+</legs:AELoginPromptLegs>

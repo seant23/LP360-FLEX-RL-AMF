@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml"
+				layout="absolute"
+				width="412"
+				height="172"
+				creationPolicy="all"
+				headerHeight="0"
+				xmlns:controls="com.Plex.controls.*"
+				roundedBottomCorners="true">
+
+	<mx:Script>
+		<![CDATA[
+			import mx.core.Application;
+
+			import org.exit12.util.Slick;
+
+
+			public function close( firstLogin:Boolean = false ):void {
+				Slick.close( this );
+			}
+		]]>
+	</mx:Script>
+	<mx:ProgressBar indeterminate="false"
+					labelPlacement="top"
+					textAlign="center"
+					label="Loading Module"
+					barColor="#71CD23"
+					labelWidth="192"
+					verticalCenter="22"
+					width="192"
+					id="progressBar"
+					x="165"
+					mode="manual"/>
+</mx:TitleWindow>

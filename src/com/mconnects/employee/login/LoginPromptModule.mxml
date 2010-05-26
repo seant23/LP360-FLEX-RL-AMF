@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ex:TitleWindowModule xmlns:fx="http://ns.adobe.com/mxml/2009"
+					  xmlns:s="library://ns.adobe.com/flex/spark"
+					  xmlns:mx="library://ns.adobe.com/flex/mx"
+					  xmlns:ex="org.exit12.module.*"
+					  layout="absolute"
+					  width="440"
+					  height="220"
+					  xmlns:login="com.mconnects.employee.login.*"
+					  roundedBottomCorners="true"
+					  headerHeight="5"
+					  xmlns:components="org.exit12.view.components.*"
+					  height.State1="180"
+					  width.State1="430"
+					  height.loginError="200"
+					  width.loginError="430">
+	<ex:states>
+		<s:State name="State1"/>
+		<s:State name="forgotPassword"/>
+		<mx:State name="loginError"/>
+	</ex:states>
+	<fx:Style source="MConnects.css"/>
+	<fx:Declarations>
+		<login:LoginPromptContext contextView="{this}"/>
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import com.mconnects.employee.login.events.LoginEvent;
+
+
+			[Bindable]
+			public var loginError:String;
+
+			public function login():void {
+				var loginEvent:LoginEvent = new LoginEvent( LoginEvent.LOGIN_ATTEMPT );
+				loginEvent.username = usernameInput.text;
+				loginEvent.password = passwordInput.text;
+				enabled = false;
+				dispatchEvent( loginEvent );
+			}
+		]]>
+	</fx:Script>
+	<components:Title_Text_Input width="227"
+								 y="59"
+								 id="usernameInput"
+								 borderStyle="solid"
+								 cornerRadius="3"
+								 right="25"
+								 title="Username..."
+								 includeIn="State1,loginError"/>
+	<components:Title_Text_Input width="227"
+								 displayAsPassword="true"
+								 id="passwordInput"
+								 borderStyle="solid"
+								 cornerRadius="3"
+								 password="true"
+								 title="Password..."
+								 includeIn="State1,loginError"
+								 y="89"
+								 right="25"/>
+	<mx:Button label="Login"
+			   click="login()"
+			   includeIn="State1,loginError"
+			   y="118"
+			   right="25"/>
+	<mx:Image x="183"
+			  y="19"
+			  source="image/logo/LoanProPoweredByLogo.png"
+			  x.State1="174"
+			  y.State1="18"
+			  x.loginError="174"
+			  y.loginError="18"/>
+	<mx:LinkButton label="Forgot Password?"
+				   click="currentState = 'forgotPassword'"
+				   includeIn="State1,loginError"
+				   x="168"
+				   y="118"
+				   width="165"/>
+	<mx:Image source="image/areo/128/Security.png"
+			  left="15"
+			  source.forgotPassword="image/areo/128/Question.png"
+			  left.State1="15"
+			  verticalCenter.forgotPassword="0"
+			  verticalCenter.State1="0"
+			  left.loginError="15"
+			  source.loginError="image/areo/128/Warning.png"
+			  y.loginError="18"/>
+	<mx:Button includeIn="forgotPassword"
+			   x="162"
+			   y="138"
+			   click="currentState = null"
+			   label="Back"/>
+	<mx:Button includeIn="forgotPassword"
+			   x="223"
+			   y="138"
+			   label="Email My Login Information"/>
+	<components:Title_Text_Input includeIn="forgotPassword"
+								 x="162"
+								 y="68"
+								 cornerRadius="3"
+								 borderStyle="solid"
+								 width="243"
+								 title="Springwater Email..."/>
+	<components:Title_Text_Input includeIn="forgotPassword"
+								 x="162"
+								 y="102"
+								 width="243"
+								 cornerRadius="3"
+								 borderStyle="solid"
+								 title="Last Four of SSN..."/>
+	<mx:Label includeIn="loginError"
+			  y="154"
+			  text="{loginError}"
+			  left="15"
+			  right="15"
+			  textAlign="center"
+			  fontSize="12"
+			  color="#7E0000"
+			  fontWeight="bold"/>
+</ex:TitleWindowModule>
