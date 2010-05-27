@@ -22,7 +22,7 @@ package com.mconnects.misc.bug.controllers {
 		[Inject]
 		public var service:JIRAService;
 
-		public function CreateNewJIRAIssue() {
+		override public function execute():void {
 			service.createIssue( event.issue );
 		}
 	}

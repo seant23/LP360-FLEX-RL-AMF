@@ -11,7 +11,7 @@
 package com.mconnects.misc.bug.model.vo {
 
 	[Bindable]
-	[RemoteClass( alias="JIRAProjectIssueTypeVO" )]
+	[RemoteClass( alias="LP_JIRAProjectIssueTypeVO" )]
 	public class JIRAProjectIssueTypeVO {
 		public var id:String;
 		public var name:String;

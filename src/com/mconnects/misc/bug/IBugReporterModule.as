@@ -8,15 +8,11 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.mconnects.misc.bug.model.vo {
+package com.mconnects.misc.bug {
+	import org.exit12.module.ITitleWindowModule;
 
-	[Bindable]
-	[RemoteClass( alias="LP_JIRAProjectPriorityVO" )]
-	public class JIRAProjectPriorityVO {
-		public var id:String;
-		public var name:String;
-		public var description:String;
-		public var icon:String;
-		public var color:String;
+	public interface IBugReporterModule extends ITitleWindowModule {
+		function set JIRAProjectKey( JIRAProjectKey:String ):void;
+		function get JIRAProjectKey():String;
 	}
 }

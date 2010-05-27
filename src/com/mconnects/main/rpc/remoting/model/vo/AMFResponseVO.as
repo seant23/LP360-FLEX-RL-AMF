@@ -8,15 +8,12 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.mconnects.misc.bug.model.vo {
+package com.mconnects.main.rpc.remoting.model.vo {
+	import com.mconnects.error.model.vo.ErrorVO;
 
-	[Bindable]
-	[RemoteClass( alias="LP_JIRAProjectPriorityVO" )]
-	public class JIRAProjectPriorityVO {
-		public var id:String;
-		public var name:String;
-		public var description:String;
-		public var icon:String;
-		public var color:String;
+	public class AMFResponseVO {
+		public var success:Boolean;
+		public var response:Object;
+		public var error:ErrorVO
 	}
 }

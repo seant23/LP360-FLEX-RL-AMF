@@ -10,6 +10,8 @@
 
 package com.mconnects.misc.bug.view.legs {
 	import com.mconnects.misc.bug.BugReporterContext;
+	import com.mconnects.misc.bug.BugToolbox;
+	import com.mconnects.misc.bug.IBugReporterModule;
 	import com.mconnects.misc.bug.model.vo.JIRAProjectComponentVO;
 	import com.mconnects.misc.bug.model.vo.JIRAProjectIssueTypeVO;
 	import com.mconnects.misc.bug.model.vo.JIRAProjectIssueVO;
@@ -34,7 +36,9 @@ package com.mconnects.misc.bug.view.legs {
 	import org.robotlegs.utilities.modular.core.IModule;
 	import org.robotlegs.utilities.modular.core.IModuleContext;
 
-	public class BugReporterLegs extends TitleWindowModule implements IModule {
+	public class BugReporterLegs extends TitleWindowModule implements IModule, IBugReporterModule {
+
+		private var _JIRAProjectKey:String;
 
 		[Bindable]
 		public var project:JIRAProjectVO;
@@ -45,13 +49,19 @@ package com.mconnects.misc.bug.view.legs {
 		public var locationCombo:ComboBox;
 		public var typeCombo:ComboBox;
 
-		public var JIRAProjectKey:String = "LOANPRO";
-
 		[Bindable]
 		public var ready:Boolean = false;
 
 		public function BugReporterLegs():void {
 			contextType = BugReporterContext;
+		}
+
+		public function set JIRAProjectKey( JIRAProjectKey:String ):void {
+			_JIRAProjectKey = JIRAProjectKey;
+		}
+
+		public function get JIRAProjectKey():String {
+			return _JIRAProjectKey;
 		}
 
 		public function save():void {
@@ -62,6 +72,7 @@ package com.mconnects.misc.bug.view.legs {
 			issue.description = descriptionInput.text;
 			issue.priority = JIRAProjectPriorityVO( priorityCombo.selectedItem ).id;
 			issue.type = JIRAProjectIssueTypeVO( typeCombo.selectedItem ).id;
+			issue.project = _JIRAProjectKey;
 
 			var event:JIRAServiceProjectIssueEvent = new JIRAServiceProjectIssueEvent( JIRAServiceProjectIssueEvent.CREATE, issue );
 

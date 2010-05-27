@@ -11,7 +11,9 @@
 package com.mconnects.misc.bug.service {
 	import com.mconnects.error.model.vo.ErrorVO;
 	import com.mconnects.main.rpc.remoting.ZAMFRemoteObject;
+	import com.mconnects.main.rpc.remoting.model.vo.AMFResponseVO;
 	import com.mconnects.misc.bug.model.vo.JIRAProjectIssueVO;
+	import com.mconnects.misc.bug.model.vo.JIRAProjectVO;
 	import com.mconnects.misc.bug.service.events.JIRAServiceProjectEvent;
 	import com.mconnects.misc.bug.service.events.JIRAServiceProjectIssueEvent;
 
@@ -40,23 +42,27 @@ package com.mconnects.misc.bug.service {
 			zamf.removeEventListener( ResultEvent.RESULT, loadProjectResultHandler );
 			zamf.removeEventListener( FaultEvent.FAULT, loadProjectFaultHandler );
 
-			if ( event.result.success ) {
+			if ( event.result is JIRAProjectVO ) {
 				var successEvent:JIRAServiceProjectEvent = new JIRAServiceProjectEvent( JIRAServiceProjectEvent.LOAD_SUCCESS );
-				successEvent.project = event.result.project;
+				successEvent.project = JIRAProjectVO( event.result );
 				dispatch( successEvent );
-			} else {
+			} else if ( event.result is ErrorVO ) {
 				var failEvent:JIRAServiceProjectEvent = new JIRAServiceProjectEvent( JIRAServiceProjectEvent.LOAD_FAULT );
-				failEvent.error = event.result.error;
+				failEvent.error = ErrorVO( event.result );
 				dispatch( failEvent );
+			} else {
+				var faultEvent:JIRAServiceProjectEvent = new JIRAServiceProjectEvent( JIRAServiceProjectEvent.LOAD_FAULT );
+				faultEvent.error = new ErrorVO();
+				dispatch( faultEvent );
 			}
 		}
 
-		private function loadProjectFaultHandler( event:FaultEvent ):void {
+		private function loadProjectFaultHandler( event:FaultEvent = null ):void {
 			zamf.removeEventListener( ResultEvent.RESULT, loadProjectResultHandler );
 			zamf.removeEventListener( FaultEvent.FAULT, loadProjectFaultHandler );
 
 			var faultEvent:JIRAServiceProjectEvent = new JIRAServiceProjectEvent( JIRAServiceProjectEvent.LOAD_FAULT );
-			faultEvent.error = new ErrorVO( "Unknown Error has Occurred", 900 );
+			faultEvent.error = new ErrorVO( event.message.toString());
 			dispatch( faultEvent );
 		}
 
@@ -78,13 +84,18 @@ package com.mconnects.misc.bug.service {
 			zamf.removeEventListener( ResultEvent.RESULT, createIssueResultHandler );
 			zamf.removeEventListener( FaultEvent.FAULT, createIssueFaultHandler );
 
-			if ( event.result.success ) {
+			if ( event.result is JIRAProjectIssueVO ) {
 				var successEvent:JIRAServiceProjectIssueEvent = new JIRAServiceProjectIssueEvent( JIRAServiceProjectIssueEvent.CREATE_SUCCESS );
+				successEvent.issue = JIRAProjectIssueVO( event.result )
 				dispatch( successEvent );
-			} else {
+			} else if ( event.result is ErrorVO ) {
 				var failEvent:JIRAServiceProjectIssueEvent = new JIRAServiceProjectIssueEvent( JIRAServiceProjectIssueEvent.CREATE_FAULT );
-				failEvent.error = event.result.error;
+				failEvent.error = ErrorVO( event.result );
 				dispatch( failEvent );
+			} else {
+				var faultEvent:JIRAServiceProjectIssueEvent = new JIRAServiceProjectIssueEvent( JIRAServiceProjectIssueEvent.CREATE_FAULT );
+				faultEvent.error = new ErrorVO();
+				dispatch( faultEvent );
 			}
 		}
 
@@ -93,7 +104,7 @@ package com.mconnects.misc.bug.service {
 			zamf.removeEventListener( FaultEvent.FAULT, createIssueFaultHandler );
 
 			var faultEvent:JIRAServiceProjectIssueEvent = new JIRAServiceProjectIssueEvent( JIRAServiceProjectIssueEvent.CREATE_FAULT );
-			faultEvent.error = new ErrorVO( "Unknown Error has Occurred", 900 );
+			faultEvent.error = new ErrorVO( event.message.toString());
 			dispatch( faultEvent );
 		}
 

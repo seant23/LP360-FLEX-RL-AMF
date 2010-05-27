@@ -16,13 +16,13 @@ package com.mconnects.misc.bug {
 	import org.exit12.util.Slick;
 
 	public class BugToolbox {
-
-		public static function openBugReporter():ModuleInstance {
+		public static function openBugReporter( JIRAProjectKey:String ):ModuleInstance {
 			var instance:ModuleInstance = ModuleManager.loadModule( "com/mconnects/misc/bug/BugReporterModule.swf" );
 
 			instance.addEventListener( ModuleManager.READY, function():void {
-					var viewer:TitleWindowModule = instance.module as TitleWindowModule;
-					Slick.add( viewer );
+					var module:IBugReporterModule = IBugReporterModule( instance.module );
+					module.JIRAProjectKey = JIRAProjectKey;
+					Slick.add( module );
 				});
 
 			return instance;

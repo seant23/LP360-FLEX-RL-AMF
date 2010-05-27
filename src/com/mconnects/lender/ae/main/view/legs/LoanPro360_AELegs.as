@@ -14,10 +14,12 @@ package com.mconnects.lender.ae.main.view.legs {
 
 	import flash.display.BlendMode;
 
+	import mx.controls.Alert;
 	import mx.core.Application;
 	import mx.effects.AnimateProperty;
 	import mx.events.EffectEvent;
 
+	import org.exit12.view.components.Prompt;
 	import org.robotlegs.core.IInjector;
 
 
@@ -44,10 +46,12 @@ package com.mconnects.lender.ae.main.view.legs {
 		}
 
 		public function reportBug():void {
-			BugToolbox.openBugReporter();
+			BugToolbox.openBugReporter( "LOANPROAE" );
 		}
 
 		public function logout():void {
+			Alert.show( "test", "test" );
+			Prompt.info( "test" );
 			LenderAEToolbox.openLogoutPrompt();
 		}
 	}

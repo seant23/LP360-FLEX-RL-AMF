@@ -10,6 +10,7 @@
 
 package com.mconnects.misc.bug.view.mediators {
 	import com.mconnects.misc.bug.BugReporterModule;
+	import com.mconnects.misc.bug.BugToolbox;
 	import com.mconnects.misc.bug.service.events.JIRAServiceProjectEvent;
 	import com.mconnects.misc.bug.service.events.JIRAServiceProjectIssueEvent;
 
@@ -26,7 +27,9 @@ package com.mconnects.misc.bug.view.mediators {
 
 		override public function onRegister():void {
 			addViewListener( JIRAServiceProjectIssueEvent.CREATE, dispatch );
+
 			addContextListener( JIRAServiceProjectEvent.LOAD_SUCCESS, projectLoadHandler );
+			addContextListener( JIRAServiceProjectIssueEvent.CREATE_SUCCESS, projectIssueCreateSuccessHandler );
 
 			dispatch( new JIRAServiceProjectEvent( JIRAServiceProjectEvent.LOAD, null, view.JIRAProjectKey ));
 		}
@@ -34,6 +37,11 @@ package com.mconnects.misc.bug.view.mediators {
 		public function projectLoadHandler( e:JIRAServiceProjectEvent ):void {
 			view.project = e.project;
 			view.ready = true;
+		}
+
+		public function projectIssueCreateSuccessHandler( e:JIRAServiceProjectIssueEvent ):void {
+			Prompt.info( "Your issue has been reported as issue #" + e.issue.id );
+			view.slickClose();
 		}
 	}
 }

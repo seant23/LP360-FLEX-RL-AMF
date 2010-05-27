@@ -8,15 +8,9 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.mconnects.misc.bug.model.vo {
+package org.exit12.module {
 
-	[Bindable]
-	[RemoteClass( alias="LP_JIRAProjectPriorityVO" )]
-	public class JIRAProjectPriorityVO {
-		public var id:String;
-		public var name:String;
-		public var description:String;
-		public var icon:String;
-		public var color:String;
+	public interface ITitleWindowModule {
+
 	}
 }
