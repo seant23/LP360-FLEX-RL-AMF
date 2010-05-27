@@ -10,17 +10,13 @@
 
 package com.mconnects.misc.bug.model.vo {
 
-	[RemoteClass( alias="BugReportVO" )]
-	public class BugReportVO {
-		public var project:String;
-		public var type:uint;
-		public var summary:String;
+	[Bindable]
+	[RemoteClass( alias="JIRAProjectPriorityVO" )]
+	public class JIRAProjectPriorityVO {
+		public var id:String;
+		public var name:String;
 		public var description:String;
-		public var priority:uint;
-		public var reporter:String;
-		public var assignee:String;
-		public var affectedVersion:Array;
-		public var customFieldValues:Array;
-		public var components:Array;
+		public var icon:String;
+		public var color:String;
 	}
 }

@@ -32,18 +32,8 @@ package com.mconnects.lender.ae.login.view.legs {
 		public var passwordInput:Title_Text_Input;
 		public var registerInput:Title_Text_Input;
 
-		protected var context:IModuleContext;
-
-		[Inject]
-		public function set parentInjector( value:IInjector ):void {
-			context = new AELoginPromptContext( this, value );
-		}
-
-		public function dispose():void {
-			if ( parent && parent.contains( this ))
-				IVisualElementContainer( parent ).removeElement( this );
-			context.dispose();
-			context = null;
+		public function AELoginPromptLegs():void {
+			contextType = AELoginPromptContext;
 		}
 
 		public function login():void {

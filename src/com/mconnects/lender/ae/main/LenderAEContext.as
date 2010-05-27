@@ -46,7 +46,7 @@ package com.mconnects.lender.ae.main {
 			//Global Commands
 			moduleCommandMap.mapEvent( AELoginEvent.NOT_LOGGED_IN, OpenLoginPromptCommand );
 
-			//Singletons
+			//Singletons 
 			injector.mapSingleton( AEService );
 
 			//!!! Very Important !!! Don't Delete !!!

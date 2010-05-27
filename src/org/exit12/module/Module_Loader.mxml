@@ -31,4 +31,7 @@
 					id="progressBar"
 					x="165"
 					mode="manual"/>
+	<mx:Image x="0"
+			  y="10"
+			  source="image/areo/128/Working.png"/>
 </mx:TitleWindow>

@@ -10,7 +10,7 @@
 
 package com.mconnects.misc.bug.events {
 	import com.mconnects.error.model.vo.ErrorVO;
-	import com.mconnects.misc.bug.model.vo.BugReportVO;
+	import com.mconnects.misc.bug.model.vo.JIRAProjectIssueVO;
 
 	import flash.events.Event;
 
@@ -20,7 +20,7 @@ package com.mconnects.misc.bug.events {
 		public static const CREATE_SUCCESS:String = "BugReportSuccess";
 		public static const CREATE_FAILED:String = "BugReportFailed";
 
-		public var bug:BugReportVO;
+		public var bug:JIRAProjectIssueVO;
 		public var error:ErrorVO;
 
 		public function BugEvent( type:String, bubbles:Boolean = false, cancelable:Boolean = false ) {

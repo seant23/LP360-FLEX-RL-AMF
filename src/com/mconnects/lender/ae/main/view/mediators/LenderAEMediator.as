@@ -12,6 +12,8 @@ package com.mconnects.lender.ae.main.view.mediators {
 
 	import com.mconnects.lender.ae.login.events.AELoginEvent;
 
+	import flash.system.ApplicationDomain;
+
 	import org.robotlegs.utilities.modular.mvcs.ModuleMediator;
 
 	public class LenderAEMediator extends ModuleMediator {
@@ -31,6 +33,8 @@ package com.mconnects.lender.ae.main.view.mediators {
 			//Logout
 			addModuleListener( AELoginEvent.LOGOUT, logoutHandler );
 			addModuleListener( AELoginEvent.NOT_LOGGED_IN, logoutHandler );
+
+			view.styleManager.loadStyleDeclarations( "MConnects.swf", true, false );
 		}
 
 		public function loggedInHandler( e:AELoginEvent ):void {

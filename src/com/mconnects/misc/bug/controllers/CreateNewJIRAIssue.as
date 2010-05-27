@@ -9,21 +9,21 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 package com.mconnects.misc.bug.controllers {
-	import com.mconnects.misc.bug.events.BugEvent;
-	import com.mconnects.misc.bug.service.BugService;
+	import com.mconnects.misc.bug.service.JIRAService;
+	import com.mconnects.misc.bug.service.events.JIRAServiceProjectIssueEvent;
 
 	import org.robotlegs.utilities.modular.mvcs.ModuleCommand;
 
-	public class CreateNewBugReport extends ModuleCommand {
+	public class CreateNewJIRAIssue extends ModuleCommand {
 
 		[Inject]
-		public var event:BugEvent;
+		public var event:JIRAServiceProjectIssueEvent;
 
 		[Inject]
-		public var service:BugService;
+		public var service:JIRAService;
 
-		public function CreateNewBugReport() {
-			service.create( event.bug );
+		public function CreateNewJIRAIssue() {
+			service.createIssue( event.issue );
 		}
 	}
 }

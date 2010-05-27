@@ -46,6 +46,7 @@ package org.exit12.module {
 				cache[ source ] = getModule( source );
 				var moduleInfo:IModuleInfo = cache[ source ] as IModuleInfo;
 
+
 				var ModuleEventReadyHandler:Function = function( e:ModuleEvent ):void {
 						if ( showPreloader ) {
 							progress.close();

@@ -74,7 +74,7 @@ Alert
     border-bottom-left-radius:     10px;
 }
 
-module|TitleWindowModule
+module|TitleWindowModule, mx|TitleWindow
 {
 	backgroundAlpha: 1;
 	borderAlpha: .85;

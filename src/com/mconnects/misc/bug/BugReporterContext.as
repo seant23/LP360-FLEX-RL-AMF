@@ -9,9 +9,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 package com.mconnects.misc.bug {
-	import com.mconnects.misc.bug.controllers.CreateNewBugReport;
+	import com.mconnects.misc.bug.controllers.CreateNewJIRAIssue;
+	import com.mconnects.misc.bug.controllers.LoadJIRAProject;
 	import com.mconnects.misc.bug.events.BugEvent;
-	import com.mconnects.misc.bug.service.BugService;
+	import com.mconnects.misc.bug.service.JIRAService;
+	import com.mconnects.misc.bug.service.events.JIRAServiceProjectEvent;
+	import com.mconnects.misc.bug.service.events.JIRAServiceProjectIssueEvent;
 	import com.mconnects.misc.bug.view.mediators.BugReporterMediator;
 
 	import flash.display.DisplayObjectContainer;
@@ -22,8 +25,8 @@ package com.mconnects.misc.bug {
 	import org.robotlegs.utilities.modular.mvcs.ModuleContext;
 
 	public class BugReporterContext extends ModuleContext {
-		public function BugReporterContext( contextView:DisplayObjectContainer = null, autoStartup:Boolean = true, parentInjector:IInjector = null, applicationDomain:ApplicationDomain = null ) {
-			super( contextView, autoStartup, parentInjector, applicationDomain );
+		public function BugReporterContext( contextView:DisplayObjectContainer = null, parentInjector:IInjector = null ) {
+			super( contextView, true, parentInjector );
 		}
 
 		override public function startup():void {
@@ -35,12 +38,13 @@ package com.mconnects.misc.bug {
 			/**
 			 * Command Map
 			 */
-			commandMap.mapEvent( BugEvent.CREATE, CreateNewBugReport );
+			commandMap.mapEvent( JIRAServiceProjectIssueEvent.CREATE, CreateNewJIRAIssue );
+			commandMap.mapEvent( JIRAServiceProjectEvent.LOAD, LoadJIRAProject );
 
 			/**
 			 * Injectors
 			 */
-			injector.mapSingleton( BugService );
+			injector.mapSingleton( JIRAService );
 
 			// and we're done
 			super.startup();

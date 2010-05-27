@@ -18,6 +18,7 @@ package org.exit12.module {
 	import mx.core.Application;
 	import mx.events.ModuleEvent;
 	import mx.modules.IModuleInfo;
+	import mx.modules.Module;
 
 	import org.robotlegs.utilities.modular.core.IModule;
 	import org.swiftsuspenders.Injector;
@@ -38,6 +39,8 @@ package org.exit12.module {
 			var newInstance:* = moduleInfo.factory.create();
 			module = DisplayObject( newInstance );
 
+
+
 			if ( ModuleManager.injector ) {
 				var RLMod:IModule = module as IModule;
 				if ( !RLMod ) {
@@ -45,6 +48,7 @@ package org.exit12.module {
 				} else {
 					ModuleManager.injector.injectInto( RLMod );
 				}
+
 			} else {
 				trace( "No Injector? " );
 			}
@@ -54,7 +58,10 @@ package org.exit12.module {
 		}
 
 		public function load():void {
+			//Cache Module Definitions - High Memory - Faster Performance
 			moduleInfo.load( ApplicationDomain.currentDomain );
+			//Don't Cache Module Definitions - Low Memory - Slower Performance
+			//moduleInfo.load( new ApplicationDomain( ApplicationDomain.currentDomain ));
 		}
 	}
 }

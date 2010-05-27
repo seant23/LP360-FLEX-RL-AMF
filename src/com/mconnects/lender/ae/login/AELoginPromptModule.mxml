@@ -27,7 +27,6 @@
 		<mx:State name="register"/>
 		<mx:State name="registerError"/>
 	</legs:states>
-	<fx:Style source="MConnects.css"/>
 	<fx:Declarations>
 		<mx:Resize duration="300"
 				   id="resize"
