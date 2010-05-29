@@ -19,7 +19,8 @@
 						resizeEffect="{resize}"
 						xmlns:legs="com.mconnects.lender.ae.login.view.legs.*"
 						height.registerError="400"
-						width.registerError="430">
+						width.registerError="430"
+						styleName="titleWindow">
 	<legs:states>
 		<s:State name="State1"/>
 		<s:State name="forgotPassword"/>

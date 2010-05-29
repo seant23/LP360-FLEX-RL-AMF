@@ -9,17 +9,17 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 package com.mconnects.lender.ae.main.controllers {
-	import com.mconnects.lender.ae.main.service.AEService;
+	import com.mconnects.lender.ae.login.service.LenderContactService;
 
 	import org.robotlegs.mvcs.Command;
 
 	public class StartAppCommand extends Command {
 
 		[Inject]
-		public var service:AEService;
+		public var service:LenderContactService;
 
 		override public function execute():void {
-			service.loadAE();
+			service.getSessionDetails();
 		}
 	}
 }

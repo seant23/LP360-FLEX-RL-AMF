@@ -11,9 +11,9 @@
 package com.mconnects.lender.ae.main {
 	import com.mconnects.lender.ae.login.AELoginPromptModule;
 	import com.mconnects.lender.ae.login.events.AELoginEvent;
+	import com.mconnects.lender.ae.login.service.LenderContactService;
 	import com.mconnects.lender.ae.main.controllers.OpenLoginPromptCommand;
 	import com.mconnects.lender.ae.main.controllers.StartAppCommand;
-	import com.mconnects.lender.ae.main.service.AEService;
 	import com.mconnects.lender.ae.main.view.mediators.LenderAEMediator;
 
 	import flash.display.DisplayObjectContainer;
@@ -47,7 +47,7 @@ package com.mconnects.lender.ae.main {
 			moduleCommandMap.mapEvent( AELoginEvent.NOT_LOGGED_IN, OpenLoginPromptCommand );
 
 			//Singletons 
-			injector.mapSingleton( AEService );
+			injector.mapSingleton( LenderContactService );
 
 			//!!! Very Important !!! Don't Delete !!!
 			ModuleManager.injector = injector;

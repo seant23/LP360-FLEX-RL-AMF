@@ -19,10 +19,28 @@ package com.mconnects.main.rpc.remoting {
 
 	public class ZAMFRemoteObject extends ModuleActor {
 
-		public var zamf:RemoteObject = new RemoteObject( 'zend' );
+		protected var source:String;
 
-		public function ZAMFRemoteObject() {
+		protected function createRemoteObject( resultHandler:Function, faultHandler:Function ):RemoteObject {
+			var ro:RemoteObject = new RemoteObject( 'zend' );
+			ro.source = source;
 
+			var resultEventHandler:Function = function( e:ResultEvent ):void {
+					ro.removeEventListener( ResultEvent.RESULT, resultEventHandler );
+					ro.removeEventListener( FaultEvent.FAULT, faultEventHandler );
+					resultHandler( e );
+				};
+
+			var faultEventHandler:Function = function( e:FaultEvent ):void {
+					ro.removeEventListener( FaultEvent.FAULT, resultEventHandler );
+					ro.removeEventListener( FaultEvent.FAULT, faultEventHandler );
+					faultHandler( e );
+				};
+
+			ro.addEventListener( ResultEvent.RESULT, resultEventHandler );
+			ro.addEventListener( FaultEvent.FAULT, faultEventHandler );
+
+			return ro;
 		}
 	}
 

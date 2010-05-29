@@ -14,7 +14,7 @@ package com.mconnects.lender.ae.login {
 	import com.mconnects.lender.ae.login.controllers.AERegisterCommand;
 	import com.mconnects.lender.ae.login.events.AELoginEvent;
 	import com.mconnects.lender.ae.login.events.AERegisterEvent;
-	import com.mconnects.lender.ae.login.service.AELoginService;
+	import com.mconnects.lender.ae.login.service.LenderContactService;
 	import com.mconnects.lender.ae.login.view.mediators.AELoginMediator;
 
 	import flash.display.DisplayObjectContainer;
@@ -44,7 +44,7 @@ package com.mconnects.lender.ae.login {
 			/**
 			 * Injectors
 			 */
-			injector.mapSingleton( AELoginService );
+			injector.mapSingleton( LenderContactService );
 
 			// and we're done
 			super.startup();

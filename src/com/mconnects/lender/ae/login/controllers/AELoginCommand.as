@@ -11,7 +11,7 @@
 package com.mconnects.lender.ae.login.controllers {
 
 	import com.mconnects.lender.ae.login.events.AELoginEvent;
-	import com.mconnects.lender.ae.login.service.AELoginService;
+	import com.mconnects.lender.ae.login.service.LenderContactService;
 
 	import org.robotlegs.mvcs.Command;
 
@@ -21,10 +21,10 @@ package com.mconnects.lender.ae.login.controllers {
 		public var event:AELoginEvent;
 
 		[Inject]
-		public var service:AELoginService;
+		public var service:LenderContactService;
 
 		override public function execute():void {
-			service.login( event.username, event.password );
+			service.login( event.lenderContact );
 		}
 	}
 }

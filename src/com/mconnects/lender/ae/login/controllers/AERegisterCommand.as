@@ -10,7 +10,7 @@
 
 package com.mconnects.lender.ae.login.controllers {
 	import com.mconnects.lender.ae.login.events.AERegisterEvent;
-	import com.mconnects.lender.ae.login.service.AELoginService;
+	import com.mconnects.lender.ae.login.service.LenderContactService;
 
 	import org.robotlegs.mvcs.Command;
 
@@ -19,10 +19,10 @@ package com.mconnects.lender.ae.login.controllers {
 		public var event:AERegisterEvent;
 
 		[Inject]
-		public var service:AELoginService;
+		public var service:LenderContactService;
 
 		override public function execute():void {
-			service.register( event.email );
+			service.register( event.lenderContact );
 		}
 	}
 }

@@ -19,7 +19,7 @@ package com.mconnects.misc.bug.model.vo {
 		public var priority:String;
 		public var reporter:String;
 		public var assignee:String;
-		public var affectedVersion:Array = new Array();
+		public var affectsVersions:Array = new Array();
 		public var fixVersions:Array = new Array();
 		public var customFieldValues:Array = new Array();
 		public var components:Array = new Array();
@@ -33,9 +33,10 @@ package com.mconnects.misc.bug.model.vo {
 		public var created:String;
 		public var attachmentNames:Array;
 		public var id:String;
+		public var key:String;
 
 		public function addAffectedVersion( newVersion:JIRAProjectVersionVO ):void {
-			affectedVersion.push( newVersion );
+			affectsVersions.push( newVersion );
 		}
 
 		public function addAffectedComponent( newComponent:JIRAProjectComponentVO ):void {

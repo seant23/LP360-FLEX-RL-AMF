@@ -10,7 +10,7 @@
 
 package com.mconnects.error.model.vo {
 
-	[RemoteClass( alias="ErrorVO" )]
+	[RemoteClass( alias="LP_ErrorVO" )]
 	[Bindable]
 	public class ErrorVO {
 

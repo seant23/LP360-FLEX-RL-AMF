@@ -9,6 +9,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 package com.mconnects.lender.ae.login.events {
+	import com.mconnects.error.model.vo.ErrorVO;
+	import com.mconnects.lender.ae.model.vo.LenderContactVO;
+
 	import flash.events.Event;
 
 	public class AERegisterEvent extends Event {
@@ -16,10 +19,8 @@ package com.mconnects.lender.ae.login.events {
 		public static const FAULT:String = "AERegisterFault";
 		public static const ATTEMPT:String = "AERegisterAttempt";
 
-		public var errorMessage:String;
-		public var errorCode:int;
-
-		public var email:String;
+		public var error:ErrorVO;
+		public var lenderContact:LenderContactVO;
 
 		public function AERegisterEvent( type:String, bubbles:Boolean = false, cancelable:Boolean = false ) {
 			super( type, bubbles, cancelable );
@@ -27,9 +28,9 @@ package com.mconnects.lender.ae.login.events {
 
 		override public function clone():Event {
 			var e:AERegisterEvent = new AERegisterEvent( type, false, false );
-			e.errorMessage = errorMessage;
-			e.errorCode = errorCode;
-			e.email = email;
+			e.error = error;
+			e.lenderContact = lenderContact;
+
 			return e;
 		}
 	}

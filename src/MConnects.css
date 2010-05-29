@@ -66,7 +66,7 @@ mx|Alert {
 	color :#0b333c;
 }
 
-/*
+
 .roundedBottom {
 	border-style:solid;
 	border-thickness: 10px;
@@ -74,8 +74,7 @@ mx|Alert {
     border-bottom-left-radius:     10px;
 }
 
-module|TitleWindowModule, mx|TitleWindow
-{
+.titleWindow {
 	backgroundAlpha: 1;
 	borderAlpha: .85;
 	borderColor: #89BBF8;
@@ -96,6 +95,8 @@ mx|Panel.TW
     border-bottom-left-radius:     10px;
 }
 
+
+/*
 Button.save { icon: Embed(source="../image/silk/disk.png"); }
 Button.close { icon: Embed(source="../image/silk/decline.png"); }
 Button.create { icon: Embed(source="../image/silk/add.png"); } 

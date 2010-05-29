@@ -47,7 +47,8 @@
 				 y="206"
 				 width="507"
 				 horizontalCenter="0"
-				 includeIn="State1"/>
+				 includeIn="State1"
+				 tabIndex="2"/>
 	<mx:TextInput id="titleInput"
 				  enabled="{ready}"
 				  x="10"
@@ -55,7 +56,8 @@
 				  width="507"
 				  borderStyle="solid"
 				  cornerRadius="3"
-				  includeIn="State1">
+				  includeIn="State1"
+				  tabIndex="1">
 	</mx:TextInput>
 	<mx:Text x="12"
 			 y="180"
@@ -80,7 +82,8 @@
 				 height="188"
 				 cornerRadius="5"
 				 horizontalCenter="0"
-				 includeIn="State1"/>
+				 includeIn="State1"
+				 tabIndex="5"/>
 	<mx:Text x="12"
 			 y="236"
 			 text="What type of issue is this?"
@@ -95,7 +98,8 @@
 				 y="262"
 				 width="507"
 				 horizontalCenter="0"
-				 includeIn="State1">
+				 includeIn="State1"
+				 tabIndex="3">
 	</mx:ComboBox>
 	<mx:Text y="292"
 			 text="Please choose on scale to seven how severe this issue is"
@@ -111,7 +115,8 @@
 				 y="318"
 				 width="507"
 				 horizontalCenter="0"
-				 includeIn="State1">
+				 includeIn="State1"
+				 tabIndex="4">
 	</mx:ComboBox>
 	<mx:Text x="12"
 			 y="348"
@@ -123,12 +128,14 @@
 		<mx:Button label="Report Bug"
 				   enabled="{ready}"
 				   click="save()"
-				   width="125">
+				   width="125"
+				   tabIndex.State1="6">
 			<mx:icon>@Embed(source='../../../../image/silk/bug_add.png')</mx:icon>
 		</mx:Button>
 		<mx:Button label="Cancel"
 				   click="slickClose()"
-				   width="125">
+				   width="125"
+				   tabIndex.State1="7">
 			<mx:icon>@Embed(source='../../../../image/silk/decline.png')</mx:icon>
 		</mx:Button>
 	</mx:ControlBar>

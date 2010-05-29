@@ -40,7 +40,7 @@ package com.mconnects.misc.bug.view.mediators {
 		}
 
 		public function projectIssueCreateSuccessHandler( e:JIRAServiceProjectIssueEvent ):void {
-			Prompt.info( "Your issue has been reported as issue #" + e.issue.id );
+			view.currentState = "complete";
 			view.slickClose();
 		}
 	}

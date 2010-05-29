@@ -50,7 +50,7 @@ package com.mconnects.lender.ae.login.view.mediators {
 
 		public function registerFaultHandler( e:AERegisterEvent ):void {
 			view.currentState = 'registerError';
-			view.loginError = e.errorMessage;
+			view.loginError = e.error.message;
 			view.enabled = true;
 		}
 

@@ -12,6 +12,7 @@ package com.mconnects.lender.ae.login.view.legs {
 	import com.mconnects.lender.ae.login.AELoginPromptContext;
 	import com.mconnects.lender.ae.login.events.AELoginEvent;
 	import com.mconnects.lender.ae.login.events.AERegisterEvent;
+	import com.mconnects.lender.ae.model.vo.LenderContactVO;
 
 	import mx.controls.TextInput;
 	import mx.core.IVisualElementContainer;
@@ -37,16 +38,24 @@ package com.mconnects.lender.ae.login.view.legs {
 		}
 
 		public function login():void {
+			var lenderContact:LenderContactVO = new LenderContactVO();
+			lenderContact.email = usernameInput.getValue();
+			lenderContact.password = passwordInput.getValue();
+
 			var loginEvent:AELoginEvent = new AELoginEvent( AELoginEvent.LOGIN_ATTEMPT );
-			loginEvent.username = usernameInput.getValue();
-			loginEvent.password = passwordInput.getValue();
+			loginEvent.lenderContact = lenderContact;
+
 			enabled = false;
 			dispatchEvent( loginEvent );
 		}
 
 		public function register():void {
+			var lenderContact:LenderContactVO = new LenderContactVO();
+			lenderContact.email = registerInput.getValue();
+
 			var registerEvent:AERegisterEvent = new AERegisterEvent( AERegisterEvent.ATTEMPT );
-			registerEvent.email = registerInput.getValue();
+			registerEvent.lenderContact = lenderContact;
+
 			enabled = false;
 			dispatchEvent( registerEvent );
 		}

@@ -11,9 +11,10 @@
 package com.mconnects.main.rpc.remoting.model.vo {
 	import com.mconnects.error.model.vo.ErrorVO;
 
+	[RemoteClass( alias="LP_AMFResponseVO" )]
 	public class AMFResponseVO {
 		public var success:Boolean;
 		public var response:Object;
-		public var error:ErrorVO
+		public var error:ErrorVO;
 	}
 }

@@ -19,6 +19,10 @@ package com.mconnects.misc.bug.service.events {
 		public static const CREATE_SUCCESS:String = "JIRAServiceCreateProjectIssueSuccess";
 		public static const CREATE_FAULT:String = "JIRAServiceCreateProjectIssueFault";
 
+		public static const DELETE:String = "JIRAServiceDeleteProjectIssue";
+		public static const DELETE_SUCCESS:String = "JIRAServiceDeleteProjectIssueSuccess";
+		public static const DELETE_FAULT:String = "JIRAServiceDeleteProjectIssueFault";
+
 		public var error:ErrorVO;
 
 		public var issue:JIRAProjectIssueVO;

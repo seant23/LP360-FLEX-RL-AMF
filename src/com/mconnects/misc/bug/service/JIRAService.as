@@ -20,9 +20,12 @@ package com.mconnects.misc.bug.service {
 	import mx.rpc.events.FaultEvent;
 	import mx.rpc.events.ResultEvent;
 
+	import org.exit12.view.components.Prompt;
+
 	public class JIRAService extends ZAMFRemoteObject {
+
 		public function JIRAService() {
-			zamf.source = "JIRA";
+			source = "JIRA";
 		}
 
 
@@ -33,15 +36,10 @@ package com.mconnects.misc.bug.service {
 		 */
 
 		public function loadProject( projectKey:String ):void {
-			zamf.addEventListener( ResultEvent.RESULT, loadProjectResultHandler );
-			zamf.addEventListener( FaultEvent.FAULT, loadProjectFaultHandler );
-			zamf.getProject( projectKey );
+			createRemoteObject( loadProjectResultHandler, loadProjectFaultHandler ).getProject( projectKey );
 		}
 
 		private function loadProjectResultHandler( event:ResultEvent ):void {
-			zamf.removeEventListener( ResultEvent.RESULT, loadProjectResultHandler );
-			zamf.removeEventListener( FaultEvent.FAULT, loadProjectFaultHandler );
-
 			if ( event.result is JIRAProjectVO ) {
 				var successEvent:JIRAServiceProjectEvent = new JIRAServiceProjectEvent( JIRAServiceProjectEvent.LOAD_SUCCESS );
 				successEvent.project = JIRAProjectVO( event.result );
@@ -58,9 +56,6 @@ package com.mconnects.misc.bug.service {
 		}
 
 		private function loadProjectFaultHandler( event:FaultEvent = null ):void {
-			zamf.removeEventListener( ResultEvent.RESULT, loadProjectResultHandler );
-			zamf.removeEventListener( FaultEvent.FAULT, loadProjectFaultHandler );
-
 			var faultEvent:JIRAServiceProjectEvent = new JIRAServiceProjectEvent( JIRAServiceProjectEvent.LOAD_FAULT );
 			faultEvent.error = new ErrorVO( event.message.toString());
 			dispatch( faultEvent );
@@ -75,15 +70,10 @@ package com.mconnects.misc.bug.service {
 		 */
 
 		public function createIssue( issue:JIRAProjectIssueVO ):void {
-			zamf.addEventListener( ResultEvent.RESULT, createIssueResultHandler );
-			zamf.addEventListener( FaultEvent.FAULT, createIssueFaultHandler );
-			zamf.createIssue( issue );
+			createRemoteObject( createIssueResultHandler, createIssueFaultHandler ).createIssue( issue );
 		}
 
 		private function createIssueResultHandler( event:ResultEvent ):void {
-			zamf.removeEventListener( ResultEvent.RESULT, createIssueResultHandler );
-			zamf.removeEventListener( FaultEvent.FAULT, createIssueFaultHandler );
-
 			if ( event.result is JIRAProjectIssueVO ) {
 				var successEvent:JIRAServiceProjectIssueEvent = new JIRAServiceProjectIssueEvent( JIRAServiceProjectIssueEvent.CREATE_SUCCESS );
 				successEvent.issue = JIRAProjectIssueVO( event.result )
@@ -100,9 +90,6 @@ package com.mconnects.misc.bug.service {
 		}
 
 		private function createIssueFaultHandler( event:FaultEvent ):void {
-			zamf.removeEventListener( ResultEvent.RESULT, createIssueResultHandler );
-			zamf.removeEventListener( FaultEvent.FAULT, createIssueFaultHandler );
-
 			var faultEvent:JIRAServiceProjectIssueEvent = new JIRAServiceProjectIssueEvent( JIRAServiceProjectIssueEvent.CREATE_FAULT );
 			faultEvent.error = new ErrorVO( event.message.toString());
 			dispatch( faultEvent );
@@ -111,5 +98,35 @@ package com.mconnects.misc.bug.service {
 
 
 
+		/**
+		 *
+		 * Function and Handlers For Creating A JIRA Issue
+		 *
+		 */
+
+		public function deleteIssue( issue:JIRAProjectIssueVO ):void {
+			createRemoteObject( deleteIssueResultHandler, deleteIssueFaultHandler ).deleteIssue( issue );
+		}
+
+		private function deleteIssueResultHandler( event:ResultEvent ):void {
+			if ( event.result is AMFResponseVO && event.result.success ) {
+				var successEvent:JIRAServiceProjectIssueEvent = new JIRAServiceProjectIssueEvent( JIRAServiceProjectIssueEvent.DELETE_SUCCESS );
+				dispatch( successEvent );
+			} else if ( event.result is ErrorVO ) {
+				var failEvent:JIRAServiceProjectIssueEvent = new JIRAServiceProjectIssueEvent( JIRAServiceProjectIssueEvent.DELETE_FAULT );
+				failEvent.error = ErrorVO( event.result );
+				dispatch( failEvent );
+			} else {
+				var faultEvent:JIRAServiceProjectIssueEvent = new JIRAServiceProjectIssueEvent( JIRAServiceProjectIssueEvent.DELETE_FAULT );
+				faultEvent.error = new ErrorVO();
+				dispatch( faultEvent );
+			}
+		}
+
+		private function deleteIssueFaultHandler( event:FaultEvent ):void {
+			var faultEvent:JIRAServiceProjectIssueEvent = new JIRAServiceProjectIssueEvent( JIRAServiceProjectIssueEvent.DELETE_FAULT );
+			faultEvent.error = new ErrorVO( event.message.toString());
+			dispatch( faultEvent );
+		}
 	}
 }

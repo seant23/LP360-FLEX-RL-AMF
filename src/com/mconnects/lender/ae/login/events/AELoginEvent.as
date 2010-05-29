@@ -9,6 +9,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 package com.mconnects.lender.ae.login.events {
+	import com.mconnects.error.model.vo.ErrorVO;
+	import com.mconnects.lender.ae.model.vo.LenderContactVO;
 	import com.mconnects.lender.model.vo.LenderVO;
 
 	import flash.events.Event;
@@ -19,20 +21,18 @@ package com.mconnects.lender.ae.login.events {
 		public static const NOT_LOGGED_IN:String = "AELoginPromptNotLoggedIn";
 		public static const LOGOUT:String = "AELoginPromptLogout";
 
-		public var username:String;
-		public var password:String;
-		public var ae:Object;
+		public var lenderContact:LenderContactVO;
 		public var lender:LenderVO;
 
-		public function AELoginEvent( type:String, username:String = null, password:String = null ) {
-			this.username = username;
-			this.password = password;
+		public var error:ErrorVO;
 
+		public function AELoginEvent( type:String, lenderContact:LenderContactVO = null ) {
 			super( type, false, false );
+			this.lenderContact = lenderContact;
 		}
 
 		override public function clone():Event {
-			return new AELoginEvent( type, username, password );
+			return new AELoginEvent( type, lenderContact );
 		}
 	}
 }
