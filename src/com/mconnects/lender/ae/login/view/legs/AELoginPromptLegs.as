@@ -16,6 +16,7 @@ package com.mconnects.lender.ae.login.view.legs {
 
 	import mx.controls.TextInput;
 	import mx.core.IVisualElementContainer;
+	import mx.events.FlexEvent;
 
 	import org.exit12.module.TitleWindowModule;
 	import org.exit12.util.Slick;
@@ -35,6 +36,14 @@ package com.mconnects.lender.ae.login.view.legs {
 
 		public function AELoginPromptLegs():void {
 			contextType = AELoginPromptContext;
+
+			SYSTEM::TESTING {
+				addEventListener( FlexEvent.CREATION_COMPLETE, function():void {
+						usernameInput.text = "sean@exit12.org";
+						passwordInput.text = "Q9KIMHWMRF";
+						registerInput.text = "sean@exit12.org";
+					});
+			}
 		}
 
 		public function login():void {

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <actionScriptProperties mainApplicationPath="LoanPro360_AE.mxml" projectUUID="16ebc0b7-06dd-429a-9764-674fa62bdbe9" version="6">
-  <compiler additionalCompilerArguments="-locale en_US -services &quot;services.xml&quot; -isolate-styles=false -keep-all-type-selectors=true -show-unused-type-selector-warnings=false" autoRSLOrdering="true" copyDependentFiles="true" fteInMXComponents="false" generateAccessible="true" htmlExpressInstall="true" htmlGenerate="true" htmlHistoryManagement="true" htmlPlayerVersionCheck="true" includeNetmonSwc="false" outputFolderPath="bin-debug" sourceFolderPath="src" strict="true" targetPlayerVersion="0.0.0" useApolloConfig="false" useDebugRSLSwfs="true" verifyDigests="true" warn="true">
+  <compiler additionalCompilerArguments="-locale en_US -services &quot;services.xml&quot; -isolate-styles=false -keep-all-type-selectors=true -show-unused-type-selector-warnings=false -define+=SYSTEM::WINDOWS,true -define+=SYSTEM::NIX,false  -define+=SYSTEM::TESTING,true" autoRSLOrdering="true" copyDependentFiles="true" fteInMXComponents="false" generateAccessible="true" htmlExpressInstall="true" htmlGenerate="true" htmlHistoryManagement="true" htmlPlayerVersionCheck="true" includeNetmonSwc="false" outputFolderPath="bin-debug" sourceFolderPath="src" strict="true" targetPlayerVersion="0.0.0" useApolloConfig="false" useDebugRSLSwfs="true" verifyDigests="true" warn="true">
     <compilerSourcePath>
       <compilerSourcePathEntry kind="1" linkType="1" path="tests"/>
     </compilerSourcePath>

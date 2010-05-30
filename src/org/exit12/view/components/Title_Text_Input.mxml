@@ -20,6 +20,9 @@
 
 				if ( value.length > 0 ) {
 					setStyle( 'color', 0x0b333c );
+					if ( password ) {
+						displayAsPassword = true;
+					}
 				}
 			}
 

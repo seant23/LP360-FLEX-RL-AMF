@@ -123,6 +123,7 @@
 			 width="390"
 			 height="220"/>
 	<mx:HBox includeIn="register,registerError"
+			 itemCreationPolicy="immediate"
 			 y="292"
 			 left="10"
 			 right="10">

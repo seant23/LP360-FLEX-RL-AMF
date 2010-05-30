@@ -7,17 +7,34 @@ package org.exit12.view.components {
 		public static const OK:uint = Alert.OK;
 
 
-		[Embed( source="Prompt_Assets\\alert_error.gif" )]
-		private static var iconError:Class;
+		SYSTEM::WINDOWS {
+			[Embed( source="Prompt_Assets\\alert_info.gif" )]
+			private static var iconInfo:Class;
 
-		[Embed( source="Prompt_Assets\\alert_info.gif" )]
-		private static var iconInfo:Class;
+			[Embed( source="Prompt_Assets\\alert_error.gif" )]
+			private static var iconError:Class;
 
-		[Embed( source="Prompt_Assets\\alert_confirm.gif" )]
-		private static var iconConfirm:Class;
+			[Embed( source="Prompt_Assets\\alert_confirm.gif" )]
+			private static var iconConfirm:Class;
+		}
+
+		SYSTEM::NIX {
+			[Embed( source="Prompt_Assets/alert_info.gif" )]
+			private static var iconInfo:Class;
+
+			[Embed( source="Prompt_Assets/alert_error.gif" )]
+			private static var iconError:Class;
+
+			[Embed( source="Prompt_Assets/alert_confirm.gif" )]
+			private static var iconConfirm:Class;
+		}
+
 
 		public static function info( message:String, closehandler:Function = null ):void {
-			show( message, "Information", Alert.OK, null, closehandler, iconInfo );
+			SYSTEM::NIX {
+				show( message, "Information", Alert.OK, null, closehandler, iconInfo );
+
+			}
 		}
 
 		public static function error( message:String, closehandler:Function = null ):void {
