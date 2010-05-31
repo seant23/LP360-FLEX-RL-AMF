@@ -28,6 +28,7 @@ package org.exit12.module {
 
 		public function TitleWindowModule() {
 			super();
+			styleName = "titleWindow";
 		}
 
 		public function slickClose( e:Event = null ):void {

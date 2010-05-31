@@ -1,6 +1,4 @@
-@namespace s "library://ns.adobe.com/flex/spark";
 @namespace mx "library://ns.adobe.com/flex/mx";
-@namespace module "org.exit12.module.*";
 
 mx|Application
 {
@@ -74,7 +72,7 @@ mx|Alert {
     border-bottom-left-radius:     10px;
 }
 
-.titleWindow {
+mx|TitleWindow, .titleWindow {
 	backgroundAlpha: 1;
 	borderAlpha: .85;
 	borderColor: #89BBF8;
